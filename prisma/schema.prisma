@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TransactionStatus {
+  PENDING
+  SUCCESS
+  FAILED
+}
+
+model Transaction {
+  id              String  @id @default(uuid())
+  zuddlCheckoutId String  @unique
+  zuddlEventId    String
+  paymentUrl      String?
+  status          TransactionStatus  @default(PENDING)
+  chargeId        String?
+  amount          Float
+  currency        String
+  zuddlResponse   Json      @default("{}")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("transaction")
+}
+
+model WebhookEvent {
+  id            String   @id @default(uuid())
+  payload       Json
+  createdAt    DateTime @default(now())
+
+  @@map("webhook_event")
+}
