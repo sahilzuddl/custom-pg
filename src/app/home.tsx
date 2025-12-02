@@ -81,7 +81,7 @@ export default function HomeClient() {
 
   switch (screen) {
     case "initial":
-      return <div className={styles.loading}>Initializing...</div>;
+      return <div className={styles.loading}>Welcome to Zuddl Custom PG test</div>;
 
     case "loading":
       return (
