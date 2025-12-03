@@ -85,6 +85,9 @@ export async function GET(
         dates: {
           expiresAt: unixTimestamp,
         },
+        charges: {
+          limit: 1,
+        }
       },
       metadata: {
         checkoutId,
