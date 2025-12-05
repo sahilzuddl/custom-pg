@@ -1,6 +1,7 @@
 export interface ZuddlWebhookRequestBody {
   webhookEventType?: EZuddlWebhookEventType;
   checkoutId: string;
+  chargeId: string;
   amount: number;
   billingDetails: {
     firstName?: string;

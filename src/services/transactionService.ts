@@ -21,6 +21,12 @@ export class TransactionService {
     });
   }
 
+  async getTransactionByChargeId(chargeId: string) {
+    return await prisma.transaction.findFirst({
+      where: { chargeId },
+    });
+  }
+
   async updateTransaction(checkoutId: string, data: Partial<TransactionData>) {
     return await prisma.transaction.update({
       where: { zuddlCheckoutId: checkoutId },

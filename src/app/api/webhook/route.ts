@@ -75,6 +75,7 @@ async function sendWebhookToZuddl(event: any) {
   const body: ZuddlWebhookRequestBody = {
     webhookEventType: getZuddlEventType(event.type),
     checkoutId: event.data.metadata.checkoutId,
+    chargeId: event.data.id,
     amount: event.data.amount,
     billingDetails: getBillingDetails(event.data),
   };

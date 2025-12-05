@@ -43,20 +43,20 @@ export async function POST(
     );
   }
 
-  const checkoutId = body.checkoutId;
-  if (!checkoutId) {
+  const chargeId = body.chargeId;
+  if (!chargeId) {
     return NextResponse.json(
-      { error: "Missing checkoutId in request body" },
+      { error: "Missing chargeId in request body" },
       { status: 400 }
     );
   }
 
   const shift4SecretKey = process.env.SHIFT4_SECRET_KEY!;
 
-  const transaction = await transactionService.getTransactionByCheckoutId(checkoutId);
+  const transaction = await transactionService.getTransactionByChargeId(chargeId);
   if (!transaction) {
     return NextResponse.json(
-      { error: "Transaction not found for the provided checkoutId" },
+      { error: "Transaction not found for the provided chargeId" },
       { status: 404 }
     );
   }

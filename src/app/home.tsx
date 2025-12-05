@@ -38,6 +38,11 @@ export default function HomeClient() {
         setScreen(ScreenState.Loading);
         const res = await axios.get(`/api/payment-link/${checkoutId}`);
         const data = res.data;
+        if (data.error){
+          setError(data.error);
+          setScreen(ScreenState.Error);
+          return;
+        }
         setPaymentLink(data.url);
         setScreen(ScreenState.Ready);
       } catch (err: any) {
