@@ -21,7 +21,7 @@ export async function POST(
     return NextResponse.json({ error: "Empty webhook event" }, { status: 400 });
   }
 
-  const checkoutId = event?.data?.metadata?.checkoutId;
+  const checkoutId = event?.data?.metadata?.zuddlCheckoutId;
 
   if (!checkoutId) {
     return NextResponse.json({ success: true });
@@ -74,7 +74,7 @@ export async function POST(
 async function sendWebhookToZuddl(event: any) {
   const body: ZuddlWebhookRequestBody = {
     webhookEventType: getZuddlEventType(event.type),
-    checkoutId: event.data.metadata.checkoutId,
+    checkoutId: event.data.metadata.zuddlCheckoutId,
     chargeId: event.data.id,
     amount: event.data.amount,
     billingDetails: getBillingDetails(event.data),
