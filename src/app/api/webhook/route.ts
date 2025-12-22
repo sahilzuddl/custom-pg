@@ -84,7 +84,7 @@ async function sendWebhookToZuddl(event: any) {
   const zuddlApiKey = process.env.ZUDDL_API_KEY!;
   try {
     const response = await axios.post(
-      `${zuddlApiBaseUrl}/api/custom-payment-gateway/${paymentGatewayId}/webhook`,
+      `${zuddlApiBaseUrl}/custom-payment-gateway/${paymentGatewayId}/webhook`,
       body,
       {
         headers: {

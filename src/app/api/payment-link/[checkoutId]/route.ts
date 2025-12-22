@@ -49,7 +49,7 @@ export async function GET(
         collectBillingAddress: true,
         collectShippingAddress: true,
         metadata: {
-          checkoutId,
+          zuddlCheckoutId: checkoutId,
         },
         lineItems: [
           {
@@ -90,7 +90,7 @@ export async function GET(
         }
       },
       metadata: {
-        checkoutId,
+        zuddlCheckoutId: checkoutId,
       },
       lineItems: [
         {
@@ -142,7 +142,7 @@ async function getZuddlTransactionDetails(
     const zuddlApiBaseUrl = process.env.ZUDDL_API_BASE_URL!;
     const zuddlApiKey = process.env.ZUDDL_API_KEY!;
     const response = await axios.get<ZuddlTransaction>(
-      `${zuddlApiBaseUrl}/api/custom-payment-gateway/${checkoutId}`,
+      `${zuddlApiBaseUrl}/custom-payment-gateway/${checkoutId}`,
       {
         headers: {
           "Content-Type": "application/json",
