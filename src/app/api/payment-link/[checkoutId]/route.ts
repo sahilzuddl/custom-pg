@@ -81,7 +81,8 @@ export async function GET(
     if (unixTimestamp && unixTimestamp < Math.floor(Date.now() / 1000)) {
       return NextResponse.json({
         error: "Transaction expired, please try again",
-      }, { status: 400 });
+        status: 400,
+      });
     }
 
     const shift4Data: Shift4PaymentLinkCreateRequest = {
