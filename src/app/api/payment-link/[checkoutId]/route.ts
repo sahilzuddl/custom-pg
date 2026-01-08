@@ -78,6 +78,12 @@ export async function GET(
       new Date(zuddlData.expiresAt).getTime() / 1000
     );
 
+    if (unixTimestamp && unixTimestamp < Math.floor(Date.now() / 1000)) {
+      return NextResponse.json({
+        error: "Transaction expired, please try again",
+      }, { status: 400 });
+    }
+
     const shift4Data: Shift4PaymentLinkCreateRequest = {
       collectBillingAddress: true,
       collectShippingAddress: true,
